@@ -18,13 +18,16 @@ export class Bookmark {
   url: string;
 
   @Column()
-  title: number;
+  title: string;
 
   @Column()
   isRead: boolean;
 
   @Column()
-  comprehension: string;
+  comprehension: number;
+
+  @Column({ nullable: true })
+  memo: string;
 
   @Column()
   createdAt: string;

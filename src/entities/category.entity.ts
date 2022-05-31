@@ -9,8 +9,6 @@ export class Category {
   @Column()
   name: string;
 
-  @ManyToMany(() => Bookmark, (bookmark) => bookmark.categories, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToMany(() => Bookmark, (bookmark) => bookmark.categories)
   bookmarks: Bookmark[];
 }
