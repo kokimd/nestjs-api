@@ -6,6 +6,7 @@ import {
   IsUrl,
   MaxLength,
 } from 'class-validator';
+import { Category } from 'src/entities/category.entity';
 
 export class CreateBookmarkDto {
   @IsNotEmpty()
@@ -22,7 +23,7 @@ export class CreateBookmarkDto {
   isRead: boolean;
 
   @IsNotEmpty()
-  categories: number[];
+  categories: Category[];
 
   @IsNumber()
   comprehension: number;
