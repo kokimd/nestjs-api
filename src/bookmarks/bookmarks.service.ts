@@ -12,7 +12,9 @@ export class BookmarksService {
   }
 
   findAll() {
-    return this.bookmarkRepository.find();
+    return this.bookmarkRepository.find({
+      relations: ['categories'],
+    });
   }
 
   // findOne(id: number) {
