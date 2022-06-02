@@ -12,4 +12,5 @@ module.exports = {
     entitiesDir: 'src/entities',
     migrationsDir: 'src/migrations',
   },
+  seeds: ['src/seeds/**/*.ts'],
 };
