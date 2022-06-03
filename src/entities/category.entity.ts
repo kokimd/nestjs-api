@@ -7,7 +7,7 @@ export class Category {
   id: number;
 
   @Column()
-  name: string;
+  label: string;
 
   @ManyToMany(() => Bookmark, (bookmark) => bookmark.categories)
   bookmarks: Bookmark[];
