@@ -7,23 +7,16 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    private userRepository: UserRepository,
-    private jwtService: JwtService,
-  ) {}
+  constructor(private userRepository: UserRepository) {}
   async signUp(createUserDto: CreateUserDto): Promise<User> {
     return await this.userRepository.createUser(createUserDto);
   }
 
-  async signIn(
-    credentialsDto: CredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  async signIn(credentialsDto: CredentialsDto): Promise<User> {
     const user = await this.userRepository.findOne(credentialsDto.id);
 
     if (user) {
-      const payload = { id: user.id };
-      const accessToken = await this.jwtService.sign(payload);
-      return { accessToken };
+      return user;
     }
     throw new UnauthorizedException();
   }

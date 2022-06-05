@@ -9,20 +9,9 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([UserRepository]),
-    PassportModule.register({
-      defaultStrategy: 'jwt',
-    }),
-    JwtModule.register({
-      secret: `${process.env.TOKEN_SECRET}`,
-      signOptions: {
-        expiresIn: 3600,
-      },
-    }),
-  ],
+  imports: [TypeOrmModule.forFeature([UserRepository])],
   controllers: [UsersController],
-  providers: [UsersService, JwtStrategy, JwtAuthGuard],
-  exports: [JwtStrategy, JwtAuthGuard],
+  providers: [UsersService],
+  exports: [],
 })
 export class UsersModule {}

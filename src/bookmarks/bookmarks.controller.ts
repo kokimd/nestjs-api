@@ -8,8 +8,10 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { User } from 'src/entities/user.entity';
 import { GetUser } from 'src/users/decorator/get-user.decorator';
+import { UserGuardDecorator } from 'src/users/decorator/user-guard.decorator';
 import { JwtAuthGuard } from 'src/users/guards/jwt-auth.guard';
 import { BookmarksService } from './bookmarks.service';
 import { CreateBookmarkDto } from './dto/create-bookmark.dto';
@@ -26,7 +28,10 @@ export class BookmarksController {
   }
 
   @Get()
-  findAll() {
+  @UseGuards(AuthGuard)
+  findAll(@UserGuardDecorator() user: any) {
+    console.log(user);
+
     return this.bookmarksService.findAll();
   }
 
